@@ -1,0 +1,53 @@
+{
+  "name": "spendwise",
+  "version": "1.0.0",
+  "description": "- [SpendWise](#spendwise)   - [Table of Contents](#table-of-contents)   - [Description](#description)   - [Tech Stack](#tech-stack)     - [Backend](#backend)     - [Frontend](#frontend)     - [Tools](#tools)   - [Setup](#setup)   - [Use Case Gude](#use-case-gude)   - [Database Model](#database-model)   - [Features](#features)   - [Future Enhancements](#future-enhancements)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srjpn/SpendWise.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/srjpn/SpendWise/issues"
+  },
+  "homepage": "https://github.com/srjpn/SpendWise#readme",
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^4.1.3",
+    "@prisma/client": "^6.4.1",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/uuid": "^10.0.0",
+    "autoprefixer": "^10.4.18",
+    "chart.js": "^4.4.8",
+    "date-fns": "^4.1.0",
+    "eslint": "^9.22.0",
+    "eslint-config-next": "^15.2.1",
+    "next": "^15.2.1",
+    "postcss": "^8.4.35",
+    "prisma": "^6.4.1",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.2",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.8.2",
+    "uuid": "^11.1.0",
+    "zod": "^3.24.2"
+  }
+}
