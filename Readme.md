@@ -1,13 +1,18 @@
 # SpendWise
 
 ## Table of Contents
-1. [Description](#description)
-2. [Tech Stack](#tech-stack)
-3. [Setup](#setup)
-4. [Use case Guide](#use-case-guide)
-5. [Database Model](#database-model)
-6. [Features](#features)
-7. [Future Enhancements](#future-enhancements)
+- [SpendWise](#spendwise)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Tech Stack](#tech-stack)
+    - [Backend](#backend)
+    - [Frontend](#frontend)
+    - [Tools](#tools)
+  - [Setup](#setup)
+  - [Use Case Gude](#use-case-gude)
+  - [Database Model](#database-model)
+  - [Features](#features)
+  - [Future Enhancements](#future-enhancements)
 
 ---
 
@@ -89,7 +94,7 @@ Detailed use cases and how they are managed within SpendWise can be found in the
 ---
 
 ## Database Model
-An in-depth description of the database model, including schema diagrams and relationships, is available in the [Database Model Document](./DATABASE_MODEL.md).
+An in-depth description of the database model, including schema diagrams and relationships, is available in the [Database Model Document](./docs/database_models.md).
 
 ---
 

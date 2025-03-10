@@ -1,0 +1,123 @@
+// Personal Finance Management System
+
+// Users and core entities
+Table users {
+  id uuid [pk]
+  username varchar(50) [not null, unique]
+  email varchar(255) [not null, unique]
+  default_currency_id uuid [ref: > currencies.id]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table accounts {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  name varchar(100) [not null]
+  type enum ('CASH', 'BANK_ACCOUNT', 'CREDIT_CARD', 'DIGITAL_WALLET', 'INVESTMENT') [not null]
+  balance decimal(15,2) [not null]
+  currency_id uuid [ref: > currencies.id]
+  is_active boolean [default: true]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table transactions {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  from_account_id uuid [ref: > accounts.id]
+  to_account_id uuid [ref: > accounts.id, null]
+  amount decimal(15,2) [not null]
+  type enum ('EXPENSE', 'INCOME', 'TRANSFER', 'LOAN', 'REPAYMENT') [not null]
+  category_id uuid [ref: > categories.id]
+  description text
+  date date [not null]
+  status enum ('COMPLETED', 'PENDING', 'CANCELLED') [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  indexes {
+    (user_id, date)
+    (user_id, category_id)
+    (from_account_id, date)
+    (to_account_id, date)
+  }
+}
+
+// Categories and Tags
+Table categories {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  name varchar(50) [not null]
+  type enum ('EXPENSE', 'INCOME') [not null]
+  icon varchar(50)
+  color varchar(7)
+  is_default boolean [default: false]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  indexes {
+    (user_id, type)
+    (user_id, name) [unique]
+  }
+}
+
+Table tags {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  name varchar(50) [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+Table transaction_tags {
+  transaction_id uuid [ref: > transactions.id]
+  tag_id uuid [ref: > tags.id]
+
+  indexes {
+    (transaction_id, tag_id) [pk]
+  }
+}
+
+// Transaction relationships
+Table linked_transactions {
+  id uuid [pk]
+  primary_transaction_id uuid [ref: > transactions.id]
+  linked_transaction_id uuid [ref: > transactions.id]
+  relationship_type enum ('LOAN_REPAYMENT', 'REFUND', 'REIMBURSEMENT') [not null]
+  created_at timestamp [not null]
+}
+
+// Currency support
+Table currencies {
+  id uuid [pk]
+  code varchar(3) [not null, unique]
+  name varchar(50) [not null]
+  symbol varchar(5) [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+}
+
+// Recurring transactions
+Table recurring_transactions {
+  id uuid [pk]
+  user_id uuid [ref: > users.id]
+  amount decimal(15,2) [not null]
+  from_account_id uuid [ref: > accounts.id]
+  to_account_id uuid [ref: > accounts.id, null]
+  category_id uuid [ref: > categories.id]
+  description text
+  frequency enum ('DAILY', 'WEEKLY', 'MONTHLY', 'YEARLY') [not null]
+  start_date date [not null]
+  end_date date
+  last_generated timestamp
+  status enum ('ACTIVE', 'PAUSED', 'CANCELLED') [not null]
+  created_at timestamp [not null]
+  updated_at timestamp [not null]
+
+  indexes {
+    (user_id, status)
+  }
+}
+
+// Note: All foreign keys have ON DELETE RESTRICT unless specified otherwise 
